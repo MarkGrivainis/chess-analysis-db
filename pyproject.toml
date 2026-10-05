@@ -7,7 +7,14 @@ authors = [
     { name = "Mark Grivainis", email = "markgrivainis@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "chess>=1.11.2",
+    "psycopg[binary]>=3.0",
+    "pydantic>=2.13.5",
+    "python-chess>=1.999",
+    "requests>=2.34.2",
+    "sqlalchemy>=2.0",
+]
 
 [project.scripts]
 chess-db = "chess_db:main"
