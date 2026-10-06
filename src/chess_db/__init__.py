@@ -27,8 +27,10 @@ def drop_db():
 def fetch_games():
     url = f"https://api.chess.com/pub/player/grvmar/games/2026/09/pgn"
     headers = {"User-Agent": "MyChessAnalysisApp/2.0"}
+    print(f"Sending get request: {url}")
     response = requests.get(url, headers=headers)
     print(response.status_code)
+    count = 0
     if response.status_code == 200:
         pgn_data = io.StringIO(response.text)
         while True:
@@ -37,4 +39,6 @@ def fetch_games():
                 break
             game_data = p.parse_game(game)
             add_game(game_data.model_dump())
-            break
+            if count == 5:
+                break
+            count += 1

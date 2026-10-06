@@ -35,7 +35,6 @@ def drop_table():
 def add_game(game_data):
     with get_standalone_connection() as conn, conn.cursor() as cur:
         game_data["moves"] = Jsonb(game_data["moves"])
-        print(game_data)
         query = """
         INSERT INTO chess_games (game_url, white_player, black_player, game_date, eco_url, moves)
         VALUES (%(game_url)s, %(white_player)s, %(black_player)s, %(game_date)s, %(eco_url)s, %(moves)s::jsonb)
