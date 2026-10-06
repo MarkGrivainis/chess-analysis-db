@@ -6,8 +6,9 @@ class ChessMoveSchema(BaseModel):
     turn: str
     san: str
     fen: str
-    clock_time: str | None = None
     stockfish_eval: str
+    clock_time: str | None = None
+    time_spent: float | None = None
 
 
 class ChessGameSchema(BaseModel):

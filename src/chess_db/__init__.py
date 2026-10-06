@@ -1,12 +1,30 @@
 import io
 
 import chess.pgn
+import click
 import requests
 
 import chess_db.parser as p
+from chess_db.queries import add_game, create_table
 
 
-def main() -> None:
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+def init_db():
+    create_table()
+
+
+@cli.command()
+def drop_db():
+    pass
+
+
+@cli.command()
+def fetch_games():
     url = f"https://api.chess.com/pub/player/grvmar/games/2026/09/pgn"
     headers = {"User-Agent": "MyChessAnalysisApp/2.0"}
     response = requests.get(url, headers=headers)
@@ -17,5 +35,6 @@ def main() -> None:
             game = chess.pgn.read_game(pgn_data)
             if game is None:
                 break
-            print(p.parse_game(game))
+            game_data = p.parse_game(game)
+            add_game(game_data.model_dump())
             break
