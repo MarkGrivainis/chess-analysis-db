@@ -11,7 +11,8 @@
         "charliermarsh.ruff",
         "ckolkman.vscode-postgres",
         "mtxr.sqltools",
-        "mtxr.sqltools-driver-pg"
+        "mtxr.sqltools-driver-pg",
+        "inferrinizzard.prettier-sql-vscode"
       ],
       "settings": {
         // Point VS Code directly to uv's virtual environment
